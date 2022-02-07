@@ -1,13 +1,15 @@
 import { ITodoRepository } from './ITodoRespository'
-import { UUID } from '../../../type'
+import { Todo } from '../../../domain/Todo'
 
-export class DeleteTodo {
+
+export class GetTodoList {
   private todoRepository:ITodoRepository
+
   constructor(todoRepository:ITodoRepository) {
     this.todoRepository = todoRepository
   }
 
-  execute(id:UUID){
-    return this.todoRepository.delete(id)
+  execute(){
+    return this.todoRepository.findAll()
   }
 }

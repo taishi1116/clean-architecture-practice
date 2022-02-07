@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from 'express';
+import router from './src/infrastructure/router'
 
 const app: Application = express();
 const PORT = 3000;
@@ -8,8 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // ルーティング
 // https://expressjs.com/ja/starter/basic-routing.html
-app.get('/', async (_req: Request, res: Response) => {
-  return res.status(200).send({
-    message: 'Hello World!',
-  });
-});
+app.use('/api', router);
+
+app.listen(3000,()=>{
+  console.log('listening on port 3000')
+})
+

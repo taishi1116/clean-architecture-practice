@@ -1,6 +1,7 @@
 import { ITodoRepository } from './ITodoRespository'
 import { Todo } from '../../../domain/Todo'
 import moment from 'moment-timezone'
+import { UUID } from '../../../type'
 
 
 export class UpdateTodo {
@@ -10,13 +11,13 @@ export class UpdateTodo {
     this.todoRepository = todoRepository
   }
 
-  async execute(todo:Todo){
-    const task = await this.todoRepository.find(todo.id)
-    task.title = todo.title
-    task.description = todo.description
+  async execute(id:UUID,title:string,description:string){
+    const task = await this.todoRepository.find(id)
+    if(task){
+    task.title = title
+    task.description = description
     task.updatedAt = moment()
-
-    return this.todoRepository.update(task)
-
+    }
+    return task
   }
 }
