@@ -1,5 +1,6 @@
 import { ITodoRepository } from './ITodoRespository'
 import { Todo } from '../../../domain/Todo'
+import { ID } from '../../../type'
 
 
 export class GetTodo {
@@ -9,7 +10,7 @@ export class GetTodo {
     this.todoRepository = todoRepository
   }
 
-  execute(todo:Todo){
-    return this.todoRepository.find(todo.id)
+  execute(id:ID){
+    return this.todoRepository.find(id)
   }
 }

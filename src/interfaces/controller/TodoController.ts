@@ -1,4 +1,3 @@
-import { ITodoRepository } from '../../application/usecases/Todo/ITodoRespository'
 import { TodoRepository } from '../gateways/memory/TodoRepository'
 import { TodoSerializer } from '../presenters/TodoSerializer'
 import { GetTodo } from '../../application/usecases/Todo/GetTodo'
@@ -9,7 +8,7 @@ import { DeleteTodo } from '../../application/usecases/Todo/DeleteTodo'
 import express from 'express'
 
 type Request = {
-  req: any
+  req: express.Request
 }
 
 export class TodoController {
@@ -22,7 +21,7 @@ export class TodoController {
   }
 
   async find({req}:Request){
-    const id = req.param.id
+    const id = req.query.id as string
 
     const usecase = new GetTodo(this.todoRepository);
     const result = await usecase.execute(id)
@@ -35,11 +34,11 @@ export class TodoController {
   }
   async findAll(){
     const usecase = new GetTodoList(this.todoRepository)
-    const result = await  usecase.execute()
+    const result = await usecase.execute()
 
     return this.todoSerializer.todos(result)
   }
-  async create({req,}:Request){
+  async create({req}:Request){
     const {title,description} = req.body
     const usecase = new CreateTodo(this.todoRepository)
     const result = await usecase.execute(title,description)
@@ -48,7 +47,7 @@ export class TodoController {
 
   }
   async updateTodo({req}:Request) {
-    const id = req.param.id
+    const id = req.query.id as string
     const {title,description} = req.body
     const usecase = new UpdateTodo(this.todoRepository)
     const result =await  usecase.execute(id,title,description)
@@ -61,7 +60,7 @@ export class TodoController {
   }
 
   async delete({req}:Request){
-    const id = req.param.id
+    const id = req.query.id as string
 
     const usecase = new DeleteTodo(this.todoRepository)
     const result = await usecase.execute(id)

@@ -1,8 +1,8 @@
 import { Todo } from '../../domain/Todo'
-import { UUID } from '../../type'
+import { ID } from '../../type'
 
 interface TodoResponse{
-  id:UUID,
+  id:ID,
   title:string,
   description:string
 }

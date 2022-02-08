@@ -1,6 +1,6 @@
 import { ITodoRepository } from '../../../application/usecases/Todo/ITodoRespository'
 import { Todo } from '../../../domain/Todo'
-import { UUID } from '../../../type'
+import { ID } from '../../../type'
 import { inMemoryTodo } from './InMemoryTodo'
 
 export class TodoRepository implements  ITodoRepository{
@@ -17,7 +17,7 @@ export class TodoRepository implements  ITodoRepository{
     new Promise(()=> setTimeout(()=>{},1000));
     return  this.inmemoryTodo
   }
- async find(id: UUID): Promise<Todo | null> {
+ async find(id: ID): Promise<Todo | null> {
     new Promise(()=> setTimeout(()=>{},1000));
     return this.inmemoryTodo.find(todo => todo.id === id) || null
   }
@@ -34,7 +34,7 @@ export class TodoRepository implements  ITodoRepository{
     })
     return todo
   }
-  async delete(id: UUID): Promise<null> {
+  async delete(id: ID): Promise<null> {
     new Promise(()=> setTimeout(()=>{},1000));
     this.inmemoryTodo = this.inmemoryTodo.filter(fTodo => fTodo.id !==id);
     return null

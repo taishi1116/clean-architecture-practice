@@ -1,5 +1,5 @@
 import { ITodoRepository } from './ITodoRespository'
-import { UUID } from '../../../type'
+import { ID } from '../../../type'
 
 export class DeleteTodo {
   private todoRepository:ITodoRepository
@@ -7,7 +7,7 @@ export class DeleteTodo {
     this.todoRepository = todoRepository
   }
 
-  execute(id:UUID){
+  execute(id:ID){
     return this.todoRepository.delete(id)
   }
 }

@@ -1,19 +1,19 @@
 import moment from 'moment-timezone'
-import { UUID } from '../type'
+import { ID } from '../type'
 
 
 export class Todo {
-  private _id: UUID
+  private _id: ID
   private _title: string
   private _description: string
   private _createdAt: moment.Moment
   private _updatedAt: moment.Moment
 
-  get id(): UUID {
+  get id(): ID {
     return this._id
   }
 
-  set id(id: UUID) {
+  set id(id: ID) {
     this._id = id
   }
 
