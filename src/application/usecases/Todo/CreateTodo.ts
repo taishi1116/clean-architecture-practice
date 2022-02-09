@@ -11,7 +11,13 @@ export class CreateTodo {
   }
 
   execute(title:string,description:string){
+
     const task = new Todo(title,description);
+
+
+    if(!task.isTitleFilled() || !task.isDescriptionFilled()){
+      throw new Error('ビジネスルールを破っているためエラー')
+    }
 
     // アプリケーション要件的な要素はインスタンス化で設定せず、setterで設定
     task.id = uuid4()

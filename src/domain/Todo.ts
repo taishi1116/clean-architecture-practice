@@ -52,6 +52,14 @@ export class Todo {
     return null
   }
 
+  isTitleFilled():boolean {
+    return this._title.length >0
+  }
+
+  isDescriptionFilled():boolean {
+    return this._description.length > 0
+  }
+
   set updatedAt(t: moment.Moment) {
     this._updatedAt = t
   }
