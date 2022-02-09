@@ -1,5 +1,4 @@
 import { ITodoRepository } from './ITodoRespository'
-import { Todo } from '../../../domain/Todo'
 import { ID } from '../../../type'
 
 

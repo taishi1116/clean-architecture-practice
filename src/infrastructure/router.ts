@@ -5,27 +5,27 @@ const todoController = new TodoController()
 const router = express.Router()
 
 router.get('/todo', async (req: express.Request, res: express.Response) => {
-  let results = await todoController.findAll()
+  const  results = await todoController.findAll()
   res.send(results)
 })
 
 router.get(
   '/todo/:id',
   async (req: express.Request, res: express.Response) => {
-    let result = await todoController.find({req})
+    const  result = await todoController.find({req})
     res.send(result)
   }
 )
 
 router.post('/todo', async (req: express.Request, res: express.Response) => {
-  let result = await todoController.create({req})
+  const  result = await todoController.create({req})
   res.send(result)
 })
 
 router.patch(
   '/todo/:id',
   async (req: express.Request, res: express.Response) => {
-    let result = await todoController.updateTodo({req})
+    const  result = await todoController.updateTodo({req})
     res.send(result)
   }
 )
@@ -33,7 +33,7 @@ router.patch(
 router.delete(
   '/todo/:id',
   async (req: express.Request, res: express.Response) => {
-    let result = await todoController.delete({req})
+    const  result = await todoController.delete({req})
     res.send(result)
   }
 )

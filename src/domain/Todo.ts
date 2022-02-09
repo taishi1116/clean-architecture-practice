@@ -37,13 +37,6 @@ export class Todo {
     return this._createdAt
   }
 
-  get getUTCCreatedAt():string | null {
-    if (this._createdAt) {
-      return this._createdAt.utc().format('YYYY-MM-DD HH:mm:ss')
-    }
-    return null
-  }
-
   set createdAt(t: moment.Moment) {
     this._createdAt = t
   }
@@ -66,7 +59,7 @@ export class Todo {
 
   // idや時刻を生成しない
   // ドメインとしては「タスク」を生成するだけなので、システムで必要なidなどはentityで実施しない
-  constructor(title:string,description :string ) {
+  constructor(title:string, description:string) {
     this._title = title
     this._description = description
   }
