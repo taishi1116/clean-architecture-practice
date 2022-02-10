@@ -4,9 +4,6 @@ import { ID } from '../../../../type'
 import { Todo } from '../../../../domain/Todo'
 import moment from 'moment-timezone'
 
-const title = 'title'
-const description = 'description'
-
 const todoRepository: ITodoRepository = {
   find(id: ID): Promise<Todo | null> {
     throw 'not implemented'
@@ -25,16 +22,10 @@ const todoRepository: ITodoRepository = {
   }
 }
 
-/**
- * usecaseの各種サービスのテスト
- * システムのビジネスルール = usecase
- * その中のtodoを作るというシステム
- * テストすべき観点
- * - repositoryが呼ばれていること
- * - title,descriptionをもとにtodoが生成される
- * - title or description = null throw error
- */
 describe('CreateTodoのテスト', function () {
+  const title = 'title'
+  const description = 'description'
+
   const todo = new Todo(title, description)
   todo.id = 'dummyId'
   todo.createdAt = moment()
@@ -46,7 +37,7 @@ describe('CreateTodoのテスト', function () {
     createSpy.mockClear()
   })
 
-  it('todoRepository.create()が呼ばれている', async function () {
+  it('interface層のtodoRepository.create()が呼ばれている', async function () {
     const usecase = new CreateTodo(todoRepository)
     expect(await usecase.execute(title, description)).toEqual(todo)
     expect(createSpy).toHaveBeenCalled()
