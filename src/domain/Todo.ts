@@ -1,7 +1,6 @@
 import moment from 'moment-timezone'
 import { ID } from '../type'
 
-
 export class Todo {
   private _id: ID
   private _title: string
@@ -45,18 +44,18 @@ export class Todo {
     return this._updatedAt
   }
 
-  getUTCUpdatedAt(): string| null {
+  getUTCUpdatedAt(): string | null {
     if (this._updatedAt) {
       return this._updatedAt.utc().format('YYYY-MM-DD HH:mm:ss')
     }
     return null
   }
 
-  isTitleFilled():boolean {
-    return this._title.length >0
+  isTitleFilled(): boolean {
+    return this._title.length > 0
   }
 
-  isDescriptionFilled():boolean {
+  isDescriptionFilled(): boolean {
     return this._description.length > 0
   }
 
@@ -64,10 +63,9 @@ export class Todo {
     this._updatedAt = t
   }
 
-
   // idや時刻を生成しない
   // ドメインとしては「タスク」を生成するだけなので、システムで必要なidなどはentityで実施しない
-  constructor(title:string, description:string) {
+  constructor(title: string, description: string) {
     this._title = title
     this._description = description
   }

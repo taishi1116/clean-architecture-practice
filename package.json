@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "ts-node index.ts",
-    "test": "jest"
+    "test": "jest",
+    "fmt": "prettier --write src/**"
   },
   "dependencies": {
     "express": "^4.17.2",

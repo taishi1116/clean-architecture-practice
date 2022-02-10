@@ -20,46 +20,45 @@ export class TodoController {
     this.todoSerializer = new TodoSerializer()
   }
 
-  async find({req}:Request){
+  async find({ req }: Request) {
     const id = req.query.id as string
 
-    const usecase = new GetTodo(this.todoRepository);
+    const usecase = new GetTodo(this.todoRepository)
     const result = await usecase.execute(id)
 
-    if(result ===null){
+    if (result === null) {
       return null
-    }else {
-    return this.todoSerializer.todo(result);
+    } else {
+      return this.todoSerializer.todo(result)
     }
   }
-  async findAll(){
+  async findAll() {
     const usecase = new GetTodoList(this.todoRepository)
     const result = await usecase.execute()
 
     return this.todoSerializer.todos(result)
   }
-  async create({req}:Request){
-    const {title,description} = req.body
+  async create({ req }: Request) {
+    const { title, description } = req.body
     const usecase = new CreateTodo(this.todoRepository)
-    const result = await usecase.execute(title,description)
+    const result = await usecase.execute(title, description)
 
     return this.todoSerializer.todo(result)
-
   }
-  async updateTodo({req}:Request) {
+  async updateTodo({ req }: Request) {
     const id = req.query.id as string
-    const {title,description} = req.body
+    const { title, description } = req.body
     const usecase = new UpdateTodo(this.todoRepository)
-    const result =await  usecase.execute(id,title,description)
+    const result = await usecase.execute(id, title, description)
 
-    if(result ===null){
+    if (result === null) {
       return null
-    }else {
-    return this.todoSerializer.todo(result)
+    } else {
+      return this.todoSerializer.todo(result)
     }
   }
 
-  async delete({req}:Request){
+  async delete({ req }: Request) {
     const id = req.query.id as string
 
     const usecase = new DeleteTodo(this.todoRepository)

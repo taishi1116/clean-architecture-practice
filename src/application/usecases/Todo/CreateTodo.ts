@@ -1,28 +1,26 @@
-import uuid4 from "uuid4";
+import uuid4 from 'uuid4'
 import moment from 'moment-timezone'
 import { Todo } from '../../../domain/Todo'
-import {ITodoRepository} from './ITodoRespository'
+import { ITodoRepository } from './ITodoRespository'
 
 export class CreateTodo {
   private taskRepository: ITodoRepository
 
   constructor(taskRepository: ITodoRepository) {
-  this.taskRepository = taskRepository
+    this.taskRepository = taskRepository
   }
 
-  execute(title:string,description:string){
+  execute(title: string, description: string) {
+    const task = new Todo(title, description)
 
-    const task = new Todo(title,description);
-
-
-    if(!task.isTitleFilled() || !task.isDescriptionFilled()){
+    if (!task.isTitleFilled() || !task.isDescriptionFilled()) {
       throw new Error('ビジネスルールを破っているためエラー')
     }
 
     // アプリケーション要件的な要素はインスタンス化で設定せず、setterで設定
     task.id = uuid4()
     task.createdAt = moment()
-    task.updatedAt= moment()
+    task.updatedAt = moment()
 
     return this.taskRepository.create(task)
   }
